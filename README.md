@@ -24,29 +24,37 @@ Connects to CelesTrak every 10 minutes, downloads the latest satellite catalog, 
 
 ## Build
 
+```bash
 g++ -O3 main.cpp propagator.cpp tle_parser.cpp http_client.cpp thread_pool.cpp -o tracker -lcurl
+```
 
 ## Run
 
+```bash
 ./tracker
+```
 
 ## Output
 
+```
 NAME: ISS (ZARYA)
 25544 -3456.12 5678.34 1234.56
 NAME: STARLINK-1234
 ...
+```
 
 Position values are ECI coordinates in kilometers.
 
 ## Project Structure
 
-main.cpp           — Entry point, runs thread pool every 10 minutes
-http_client.cpp    — Fetches raw TLE data from CelesTrak via libcurl
-tle_parser.cpp     — Parses TLE text into Satellite structs
-propagator.cpp     — Wraps Vallado SGP4 to compute position from TLE
-thread_pool.cpp    — Worker thread pool with mutex-protected queue
-satellite.h        — Satellite struct definition
+```
+├── main.cpp           — Entry point, runs thread pool every 10 minutes
+├── http_client.cpp    — Fetches raw TLE data from CelesTrak via libcurl
+├── tle_parser.cpp     — Parses TLE text into Satellite structs
+├── propagator.cpp     — Wraps Vallado SGP4 to compute position from TLE
+├── thread_pool.cpp    — Worker thread pool with mutex-protected queue
+├── satellite.h        — Satellite struct definition
+```
 
 ## Dependencies
 
